@@ -59,7 +59,7 @@ def primer_ex(request):
 
         print(stdent.results)
         stdent.results['primer'].append([data["score"],data["time"]])
-        if stdent.best_time > data["time"]:
+        if stdent.best_time > data["time"] and data["score"]==10:
             stdent.best_time = data["time"]
         stdent.save()
 
