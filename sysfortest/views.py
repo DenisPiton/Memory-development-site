@@ -140,8 +140,8 @@ def api(request, number=0):
     if request.method == "GET":
         if request.user.is_authenticated:
             buf = {}
-            # with open("/home/IDenI/Memory-development-site/sysfortest/words.json") as jsonf:
-            with open("sysfortest/words.json") as jsonf:
+            with open("/home/IDenI/Memory-development-site/sysfortest/words.json") as jsonf:
+            #with open("sysfortest/words.json") as jsonf:
                 buf = json.loads(jsonf.read())
             return JsonResponse(buf)
 
