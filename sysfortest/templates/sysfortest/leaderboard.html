@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Memory Exercise</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        </style>
+    </head>
+    <body class="bg-gray-900 text-white">
+        <header class="bg-gray-800 p-6">
+            <h1 class="text-3xl font-bold text-center">Упрожнение для памяти</h1>
+            <nav class="mt-4 flex justify-center space-x-4">
+                <a href="/profile" class="text-gray-300 hover:text-blue-400">Профиль</a>
+                <a href="/test" class="text-gray-300 hover:text-blue-400">Упрожнения</a>
+                <a href="/leaderboard" class="text-gray-300 hover:text-blue-400">Таблица лидеров</a>
+                <a href="/about" class="text-gray-300 hover:text-blue-400">О проекте</a>
+            </nav>
+        </header>
+        <!-- <div class="w-3/4 bg-gray-800 grid grid-cols-2 auto-rows-auto m-10 place-self-center p-2 place-items-center text-center rounded-lg gap-2">
+            <div class="bg-gray-700 w-full text-xl p-2 rounded">Имя пользователя</div>
+            <div class="bg-gray-700 w-full text-xl p-2 rounded">Результат</div>
+
+            {%for i in leaders%}
+                <div class="bg-gray-700 w-full text-xl p-2 rounded-lg">{{i.user.username}}</div>
+                <div class="bg-gray-700 w-full text-xl p-2 rounded-lg">{{i.best_time}}</div>
+            {%endfor%}
+            
+        </div> -->
+        <div class="w-1/2 min-w-[700px] min-h-96 place-self-center mt-8 bg-gray-800 rounded-3xl">
+            <div class="h-20 w-full grid grid-cols-2 bg-gray-700 rounded-t-3xl text-center place-content-center">
+                <p class="text-2xl font-normal text-gray-400">Имя пользователя</p>
+                <p class="text-2xl font-normal text-gray-400">Результат</p>
+
+                
+            </div>
+            {%for i in leaders%}
+                <div class="grid grid-cols-2 w-full text-center place-content-center h-20">
+                    <p class="text-2xl font-medium">{{i.user.username}}</p>
+                    <p class="text-2xl font-semibold">{{i.best_time}} секунд</p>
+                </div>
+            {%endfor%}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Exercise</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+    <script src="https://www.gstatic.com/charts/loader.js">
+    </script>
+
+</head>
+<body class="bg-gray-900 text-white">
+    <header class="bg-gray-800 p-6">
+        <h1 class="text-3xl font-bold text-center">Упрожнение для памяти</h1>
+        <nav class="mt-4 flex justify-center space-x-4">
+            <a href="/profile" class="text-gray-300 hover:text-blue-400">Профиль</a>
+            <a href="/test" class="text-gray-300 hover:text-blue-400">Упрожнения</a>
+            <a href="/leaderboard" class="text-gray-300 hover:text-blue-400">Таблица лидеров</a>
+            <a href="/about" class="text-gray-300 hover:text-blue-400">О проекте</a>
+        </nav>
+    </header>
+
+    <h1 class="text-4xl place-self-center mt-8">Привет {{name}}, вот твоя статистика:</h1>
+    <div class="grid grid-cols-2 auto-rows-auto gap-5 place-items-center mt-8">
+        <h1 class="text-xl text-gray-400">Результаты по запоминанию слов:</h1>
+        <h1 class="text-xl text-gray-400">Колличество решёных примеров:</h1>
+        <div id="myChart" class="h-96 w-96"></div>
+        <div id="myChart2" class="h-96 w-96"></div>
+        
+    </div>
+    <h1 class="text-xl text-gray-400 place-self-center mt-8">время решения примеров с максимальным результатом:</h1>
+    <div id="myChart3" class="h-96 w-96 place-self-center m-2"></div>
+    
+
+    <script>
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+    </script>
+    <script>
+        // google.charts.load('current',{packages:['corechart']});
+
+        // google.charts.setOnLoadCallback(drawChart);
+        // function drawChart()
+        // {
+        //     const data = google.visualization.arrayToDataTable([
+        //         ['Score', 'Number'],
+        //     ])
+        // }
+        let csrftoken = ""
+        for(let i = document.cookie.toString().indexOf("csrftoken=")+10;i<document.cookie.length;i++)
+        {
+            if(document.cookie[i] != ";")
+            {
+                csrftoken+=document.cookie[i];  
+            }
+            else
+            {       
+                break;
+            }
+        }
+        fetch("api/results",{
+            method:"GET",
+            headers:{
+                "Content-Type":"application/json",
+                "X-CSRFToken":csrftoken
+            }
+        }).then((result)=>{
+            return result.json()
+        }).then((data)=>{
+            console.log(data["results"]["slova"])
+            let data1 = data["results"]["slova"]
+            let data3 = data["results"]["primer"]
+
+            let buf = Array();
+            let buf2 = Array();
+            let buf3 = Array();
+            buf3.push(['Number','Score'])
+            buf2.push(['Number','Score'])
+            buf.push(['Number','Score'])
+
+            for(let i =0;i<data1.length;i++)
+            {
+                buf.push([i,Number(data1[i])])
+            }
+            for(let i =0;i<data3.length;i++)
+            {
+                buf2.push([i,Number(data3[i][0])])
+            }
+            let i_c = 0
+            for(let i =0;i<data3.length;i++)
+            {
+                if(data3[i][0] == 10){
+                    buf3.push([i_c,Number(data3[i][1])])
+                    i_c++;
+                }
+                
+            }
+            
+
+
+            console.log(buf)
+            
+            const data2 = google.visualization.arrayToDataTable(
+                buf    
+            )
+            const data_p_s = google.visualization.arrayToDataTable(buf2)
+            const data_t_p = google.visualization.arrayToDataTable(buf3);
+
+            const options = {
+                title: 'Количество запомненных слов',
+                hAxis: {title: 'Попытка'},
+                vAxis: {title: 'Кол-во'},
+                legend: 'none'
+            };
+            const options_s_p = {
+                title: 'Количество решённых примеров',
+                hAxis: {title: 'Попытка'},
+                vAxis: {title: 'Кол-во'},
+                legend: 'none'
+            };
+            const options_t_p = {
+                title: '',
+                hAxis: {title: 'Попытка'},
+                vAxis: {title: 'Секунды'},
+                legend: 'none'
+            };
+            
+            const chart = new google.visualization.LineChart(document.getElementById("myChart"));
+            const chart_s_p = new google.visualization.LineChart(document.getElementById("myChart2"));
+            const chart_t_p = new google.visualization.LineChart(document.getElementById("myChart3"));
+            chart_t_p.draw(data_t_p,options_t_p);
+            chart_s_p.draw(data_p_s,options_s_p);
+            chart.draw(data2,options)
+
+        })
+    </script>
+</body>
+
+</html>
