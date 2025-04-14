@@ -49,25 +49,25 @@
 </head>
 <body class="bg-gray-900 flex items-center justify-center min-h-screen">
     <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
-        <h2 class="text-2xl text-white text-center mb-6">Login to Your Account</h2>
+        <h2 class="text-2xl text-white text-center mb-6">Вход в Аккаунт</h2>
         
         <form  method="post" action="">
             {%csrf_token%}
             <div class="mb-4">
-                <label class="block text-gray-300 mb-2" for="email">Login</label>
-                <input class="inp" name="username" type="text" id="email" placeholder="Enter your email" required>
+                <label class="block text-gray-300 mb-2" for="email">Войти</label>
+                <input class="inp" name="username" type="text" id="email" placeholder="Введите свою электронную почту" required>
             </div>
             <div class="mb-4">
-                <label class="block text-gray-300 mb-2"  name="password">Password</label>
-                <input class="inp" name="password" type="password" id="password" placeholder="Enter your password" required>
+                <label class="block text-gray-300 mb-2"  name="password">Пароль</label>
+                <input class="inp" name="password" type="password" id="password" placeholder="Введите пароль" required>
             </div>
-            <button class="butun" type="submit">Login</button>
+            <button class="butun" type="submit">Войти</button>
         </form>
         <div class="mt-4 text-center">
-            <a class="text-blue-400 hover:underline" href="#">Forgot Password?</a>
+            <a class="text-blue-400 hover:underline" href="#">Забыли Пароль?</a>
         </div>
         <div class="mt-4 text-center">
-            <p class="text-gray-400">Don't have an account? <a class="text-blue-400 hover:underline" href="/reg">Sign Up</a></p>
+            <p class="text-gray-400">Don't have an account? <a class="text-blue-400 hover:underline" href="/reg">Зарегистрироваться</a></p>
         </div>
     </div>
 </body>
