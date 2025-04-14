@@ -54,14 +54,14 @@
         
     </header>
     <h1 class="place-self-center m-8 font-bold text-4xl">Запоминание слов</h1>
-    <h1 id="t" class="place-self-center text-center w-1/2 text-gray-400">Нажатие кнопки запустит тест, после этого вам будет отведено 2 минуты на запоминание слов после чего вам надо будет выбрать из списка слова которые вы запомнили (каждое неправильно выбранное слово будет отнимать 1 балл)</h1>
+    <h1 id="t" class="place-self-center text-center w-3/4 md:w-1/2 text-gray-400">Нажатие кнопки запустит тест, после этого вам будет отведено 2 минуты на запоминание слов после чего вам надо будет выбрать из списка слова которые вы запомнили (каждое неправильно выбранное слово будет отнимать 1 балл)</h1>
     <div  class="place-self-center content-center h-auto">
         <button  id="but" class="place-self-center w-48 h-24 mt-16  bg-blue-500 rounded-lg text-3xl font-bold transition duration-300 delay-50 ease-in-out hover:bg-blue-600">Старт!</button>
 
     </div>
-    <div id="words-grid-1" class="bg-gray-700 gap-3 mt-6  grid grid-cols-6 grid-rows-4 content-center place-self-center rounded-lg hidden">
+    <div id="words-grid-1" class="bg-gray-700 gap-3 mt-6 md:grid-cols-6 grid md:grid-rows-4 grid-cols-2 content-center place-self-center rounded-lg hidden">
     </div>
-    <div id="words-grid-2" class="bg-gray-700 gap-3 mt-6  grid grid-cols-6 grid-rows-4 content-center place-self-center rounded-lg hidden"></div>
+    <div id="words-grid-2" class="bg-gray-700 gap-3 mt-6  md:grid-cols-6 grid md:grid-rows-4 grid-cols-2 content-center place-self-center rounded-lg hidden"></div>
     <div  class="place-self-center content-center h-auto">
         <button  id="but_send" class="place-self-center w-48 h-24 mt-16  bg-blue-500 rounded-lg text-3xl font-bold transition duration-300 delay-50 ease-in-out hover:bg-blue-600">Отправить!</button>
 
@@ -76,7 +76,35 @@
         <a href="/test" class=" rounded-lg bg-blue-500 text-2xl font-bold p-2">На главную</a>
         <p class="font-light text-sm mt-5 text-gray-400">*все результаты можно посмотреть в профиле</p>
     </div>
-    
+    <script>
+        document.querySelectorAll('.accordion-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const isOpen = button.classList.contains('active');
+                const content = document.getElementById("cord");
+                console.log("asd")
+                // Закрыть все аккордеоны
+                document.querySelectorAll('.accordion-toggle').forEach(otherButton => {
+                    if (otherButton !== button) {
+                        otherButton.classList.remove('active');
+                        otherButton.querySelector('svg').classList.remove('rotate-180');
+                        otherButton.nextElementSibling.style.maxHeight = '0';
+                    }
+                });
+
+                // Переключить текущий аккордеон
+                if (!isOpen) {
+                    button.classList.add('active');
+                    button.querySelector('svg').classList.add('rotate-90');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                
+                } else {
+                    button.classList.remove('active');
+                    button.querySelector('svg').classList.remove('rotate-90');
+                    content.style.maxHeight = '0';
+                }
+            });
+        });
+    </script>
 
     <script>
         let but = document.getElementById("but");
