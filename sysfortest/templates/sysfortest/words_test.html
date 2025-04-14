@@ -25,7 +25,7 @@
         </nav>
     </header>
     <h1 class="place-self-center m-8 font-bold text-4xl">Запоминание слов</h1>
-    <h1 id="t" class="place-self-center text-center w-1/2 text-gray-400">Нажатие кнопки запустит тест, после этого вам будет отведено 2 минуты на запоминание слов после чего вам надо будет выбрать из списка слова которые вы запомнили и нажать кнопку ниже</h1>
+    <h1 id="t" class="place-self-center text-center w-1/2 text-gray-400">Нажатие кнопки запустит тест, после этого вам будет отведено 2 минуты на запоминание слов после чего вам надо будет выбрать из списка слова которые вы запомнили (каждое неправильно выбранное слово будет отнимать 1 балл)</h1>
     <div  class="place-self-center content-center h-auto">
         <button  id="but" class="place-self-center w-48 h-24 mt-16  bg-blue-500 rounded-lg text-3xl font-bold">Старт!</button>
 
@@ -58,7 +58,7 @@
         let grid = document.getElementById("words-grid-1");
         let grid2 = document.getElementById("words-grid-2");
         let words_sec = Array();
-        let tim = 1;
+        let tim = 120;
         but2.hidden = true;
         function change_color()
         {   
