@@ -15,7 +15,7 @@
 
 </head>
 <body class="bg-gray-900 text-white">
-    <header class="bg-gray-800 p-6">
+    <header class="bg-gray-800 p-6 hidden sm:block">
         <h1 class="text-3xl font-bold text-center">Упражнение для памяти</h1>
         <nav class="mt-4 flex justify-center space-x-4">
             <a href="/profile" class="text-gray-300 hover:text-blue-400">Профиль</a>
@@ -24,7 +24,36 @@
             <a href="/about" class="text-gray-300 hover:text-blue-400">О проекте</a>
         </nav>
     </header>
-    <h1 class="place-self-center m-8 font-bold text-4xl">Запоминание математических символов</h1>
+    
+    <header class="p-4 z-100 mb-6 w-full h-15 place-self-center sticky  top-0 right-0 left-0 rounded-lg justify-items-stretch display sm:hidden ">
+        <div class="  backdrop-blur-md grid grid-cols-2 w-full h-15 p-2 bg-gray-800">
+            <div>
+                <a href="/profile">
+                    <svg class="w-10 h-10  text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4Zm10 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-8-5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm1.942 4a3 3 0 0 0-2.847 2.051l-.044.133-.004.012c-.042.126-.055.167-.042.195.006.013.02.023.038.039.032.025.08.064.146.155A1 1 0 0 0 6 17h6a1 1 0 0 0 .811-.415.713.713 0 0 1 .146-.155c.019-.016.031-.026.038-.04.014-.027 0-.068-.042-.194l-.004-.012-.044-.133A3 3 0 0 0 10.059 14H7.942Z" clip-rule="evenodd"/>
+                    </svg>
+                </a>
+                  
+            </div>
+             <!-- для профиля -->
+            <div class="h-full accordion-toggle justify-self-end place-self-center shadow  w-10 bg-gray-700 rounded-md transition duration-200 ease-in-out active:bg-gray-500">
+                <svg class="w-10 h-10 transition-all justify-self-center place-self-center text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
+                </svg>
+                  
+            </div>
+        </div>
+        <div id="cord" class=" z-10 accordion-content overflow-hidden transition-all duration-200 sticky backdrop-blur-md bg-gray-800 max-h-0 bg">
+            <!-- <h1 class="place-self-center text-xl font-light mx-3 p-2 w-full transition duration-200 active:bg-[#c4ab873b]"><a href="/profile" class="w-full h-full">Профиль</a></h1> -->
+            <h1 class="place-self-center text-xl font-light mx-3 p-2 w-full transition duration-200 active:bg-gray-700"><a href="/test" class="w-full h-full">Упражнения</a></h1>
+            <h1 class="place-self-center text-xl font-light mx-3 p-2 w-full transition duration-200 active:bg-gray-700"><a href="/leaderboard" class="w-full h-full">Таблица лидеров</a></h1>
+            <h1 class="place-self-center text-xl font-light mx-3 p-2 w-full transition duration-200 active:bg-gray-700"><a href="Calculator.html" class="w-full h-full">О проекте</a></h1>
+            
+            
+        </div>
+        
+    </header>
+    <h1 class="place-self-center m-8 font-bold text-xl text-center">Запоминание математических символов</h1>
     <h1 id="t" class="place-self-center text-white-800">Нажатие кнопки запустит тест</h1>
     <div  class="place-self-center content-center h-auto">
         <button  id="but" class="place-self-center w-48 h-24 mt-16 bg-blue-500 rounded-lg text-3xl font-bold">Старт!</button>
@@ -37,9 +66,9 @@
         <div id="timer" class="place-self-center w-32 h-32 bg-gray-600 rounded-lg text-4xl text-center content-center m-8 hidden">
             <h1 id="timerr" class="text-6xl">60</h1>
         </div>
-
-        <div id="gen-grid" class="grid grid-cols-2 grid-rows-5 bg-gray-800 h-96 w-auto gap-10 rounded-lg p-5 m-7 content-center hidden">
-            <div class=" h-16 text-center flex gap-1">
+        <!-- hidden -->
+        <div id="gen-grid" class="hidden sm:grid-cols-2 sm:grid-rows-5 bg-gray-800 sm:h-96 w-auto gap-10 rounded-lg p-5 m-7 content-center ">
+            <div class=" h-16 text-center flex justify-stretch">
                 <span class="self-center text-2xl"></span>
                 <input class="self-center h-10 outline-none bg-gray-600 rounded-lg text-2xl w-14 text-center">
 
@@ -109,7 +138,35 @@
     
 
 
+    <script>
+        document.querySelectorAll('.accordion-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const isOpen = button.classList.contains('active');
+                const content = document.getElementById("cord");
+                console.log("asd")
+                // Закрыть все аккордеоны
+                document.querySelectorAll('.accordion-toggle').forEach(otherButton => {
+                    if (otherButton !== button) {
+                        otherButton.classList.remove('active');
+                        otherButton.querySelector('svg').classList.remove('rotate-180');
+                        otherButton.nextElementSibling.style.maxHeight = '0';
+                    }
+                });
 
+                // Переключить текущий аккордеон
+                if (!isOpen) {
+                    button.classList.add('active');
+                    button.querySelector('svg').classList.add('rotate-90');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                
+                } else {
+                    button.classList.remove('active');
+                    button.querySelector('svg').classList.remove('rotate-90');
+                    content.style.maxHeight = '0';
+                }
+            });
+        });
+    </script>
     
     <script>
         let t = document.getElementById("t")
@@ -128,12 +185,13 @@
 
         let generation =  function()
         {
-            document.getElementById("timer_g").className = document.getElementById("timer_g").className.slice(0,-6);
+            document.getElementById("timer_g").classList.remove("hidden")
             gr = document.getElementById("gen-grid");
-            gr.className = gr.className.toString().slice(0, -6);
+            gr.classList.remove("hidden")
+            gr.classList.add("grid")
             cells = gr.children;
             but = document.getElementById("submit");
-            but.className = but.className.slice(0,-6);
+            but.classList.remove("hidden")
 
 
             for(let i = 0;i<10;i++)
@@ -209,7 +267,8 @@
                         'time':tim_score
                     })
                 }).then((result)=>{
-                    gr.className += " hidden"
+                    gr.classList.add("hidden")
+                    gr.classList.remove("grid")
                     document.getElementById("timer_g").className += " hidden"
                     but.className += " hidden"
                     result_desk.className = "place-self-center w-96 h-80 bg-gray-800 text-center p-6 rounded-3xl"
@@ -254,7 +313,7 @@
             let str = ref.className.toString()
 
             ref.className = str.slice(0,-6);
-            timer.className = timer.className.toString().slice(0, -6);
+            timer.classList.remove("hidden")
             
             
 
