@@ -9,5 +9,5 @@ class Student(models.Model):
     test_passed = models.IntegerField(default=0)
     words_test_passed = models.IntegerField(default=0)
     results = models.JSONField(default={'slova':[],'primer':[]})
-    best_time = models.IntegerField(default=0)
+    best_time = models.IntegerField(default=1000)
 
